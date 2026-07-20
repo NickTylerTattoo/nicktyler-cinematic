@@ -185,7 +185,7 @@ addEventListener('load', () => setTimeout(hideLoader, 1200));
 
   if (STILL) {
     /* frozen state for screenshots: title in, frame 0 */
-    $$('#heroT1 .hero__line').forEach(el => { el.style.letterSpacing = '-0.035em'; el.style.opacity = 1; });
+    $$('#heroT1 .hero__line').forEach(el => { el.style.letterSpacing = '-0.01em'; el.style.opacity = 1; });
     $('#heroT1').style.opacity = 1;
     orbit.progress(0);
     return;
@@ -206,7 +206,7 @@ addEventListener('load', () => setTimeout(hideLoader, 1200));
   const lines = $$('#heroT1 .hero__line');
   gsap.set(lines, { letterSpacing: '0.55em', opacity: 0 });
   gsap.set($('#heroT1 .kicker'), { opacity: 0, y: 10 });
-  tl.to(lines, { letterSpacing: '-0.035em', opacity: 1, duration: .14, stagger: .02 }, 0.015)
+  tl.to(lines, { letterSpacing: '-0.01em', opacity: 1, duration: .14, stagger: .02 }, 0.015)
     .to('#heroT1 .kicker', { opacity: 1, y: 0, duration: .06 }, 0.05)
     .to('#heroT1', { opacity: 0, y: -60, duration: .08 }, 0.30)
   /* Stage 2 — discipline lines */
