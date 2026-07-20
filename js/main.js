@@ -1,4 +1,4 @@
-/* ===== Nick Tyler Tattoo — Cinematic scroll site ===== */
+/* ===== NTT Private Events — Something Permanent · cinematic scroll site ===== */
 (() => {
 'use strict';
 const $  = (s, c = document) => c.querySelector(s);
@@ -6,53 +6,37 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 const params = new URLSearchParams(location.search);
 const STILL = params.has('still');
 if (STILL) document.body.classList.add('still');
-const money = n => '$' + n.toLocaleString();
 
-/* ---------- Catalog (The Drop · 35 one-of-one designs, real names/prices/status) ---------- */
-const CAT = [
-  ['01','Serpent & Sigil Triptych','versatile','Any Placement','5–7 in',500,'live'],
-  ['02','Ornamental Crest','versatile','Any Placement','4–5 in',500,'claimed'],
-  ['03','Lotus Filigree','versatile','Any Placement','4–6 in',500,'live'],
-  ['04','Dotwork Diadem','versatile','Any Placement','4–5 in',500,'live'],
-  ['05','Veiled Mandala','versatile','Any Placement','5–6 in',500,'live'],
-  ['06b','Cathedral Sleeve','sleeve','Outer Sleeve','Single sleeve',1400,'live'],
-  ['06a','Crescent Sleeve','sleeve','Outer Sleeve','Single sleeve',1400,'live'],
-  ['07a','Vespers Sleeve','sleeve','Outer Sleeve','Single sleeve',1400,'live'],
-  ['07b','Sanctuary Sleeve','sleeve','Outer Sleeve','Single sleeve',1400,'live'],
-  ['08a','Lacework Sleeve','sleeve','Outer Sleeve','Single sleeve',1400,'claimed'],
-  ['08b','Litany Sleeve','sleeve','Outer Sleeve','Single sleeve',1400,'claimed'],
-  ['09','Cathedral Mandala','upper-back','Upper Back','Upper back',1200,'live'],
-  ['10','Reliquary Mandala','upper-back','Upper Back','Upper back',1200,'live'],
-  ['11','Sanctuary Spine','upper-back','Upper Back','Upper back',1200,'live'],
-  ['12','Aria Spine Ornament','upper-back','Upper Back','Upper back',1200,'live'],
-  ['13','Vesica Mandala','upper-back','Upper Back','Upper back',1200,'claimed'],
-  ['14','Chapel Crown','upper-back','Upper Back','Upper back',1200,'live'],
-  ['15','Vespers Mandala','full-back','Full Back','Full back',2400,'live'],
-  ['16','Compass Rose Ornament','full-back','Full Back','Full back',2400,'live'],
-  ['17','Lacework Halo','full-back','Full Back','Full back',2400,'live'],
-  ['18','Veiled Reliquary','full-back','Full Back','Full back',2400,'claimed'],
-  ['19','Liturgy Mandala','full-back','Full Back','Full back',2400,'live'],
-  ['20','Pendulum Drape','sternum','Sternum','5–7 in',625,'live'],
-  ['21','Aura Drape','sternum','Sternum','5–7 in',625,'claimed'],
-  ['22','Delicate Drape','sternum','Sternum','6–8 in',750,'live'],
-  ['23','Lacework Drape','sternum','Sternum','6–8 in',750,'live'],
-  ['24','Sanctuary Drape','sternum','Sternum','5–7 in',625,'feat'],
-  ['25','Chandelier Cascade','sternum','Sternum','7–9 in',750,'live'],
-  ['26','Diadem Cascade','sternum','Sternum','5–7 in',625,'live'],
-  ['27','Ornamental Cascade','sternum','Sternum','6–8 in',750,'live'],
-  ['28','Aria Sternum','sternum','Sternum','5–7 in',625,'live'],
-  ['29','Blackwork Choker','sternum','Sternum','7–9 in',750,'live'],
-  ['30','Sunburst Sternum','sternum','Sternum','5–7 in',625,'claimed'],
-  ['31','Lacework Ornament','sternum','Sternum','6–8 in',750,'live'],
-  ['32','Reliquary Sternum','sternum','Sternum','5–7 in',625,'live'],
-  ['33','Filigree Ornament','sternum','Sternum','6–8 in',750,'live'],
-  ['34','Pendant Sternum','sternum','Sternum','5–7 in',625,'live'],
-  ['35','Veiled Drape','sternum','Sternum','6–8 in',750,'live'],
-].map((d, i) => ({
-  n: i + 1, title: d[1], cat: d[2], place: d[3], size: d[4], price: d[5], status: d[6],
-  thumb: `assets/flash/thumbs/flash-${d[0]}.jpg`,
-  available: d[6] === 'live' || d[6] === 'feat'
-}));
+/* ---------- The Packages (pricing locked 2026-07-14) ---------- */
+const TIERS = [
+  {
+    name: 'The Party Block',
+    spec: '2 hours on site · Up to 6 tattoos',
+    desc: 'Bridal showers, engagement parties, and intimate bachelorettes.',
+    label: 'Flat', price: '$1,000',
+    img: 'assets/events/tier-party.jpg',
+    alt: 'Bachelorette party getting tiny fine line tattoos in a living room',
+    stamp: null
+  },
+  {
+    name: 'The Main Event',
+    spec: '4 hours on site · Up to 12 tattoos',
+    desc: 'The bachelorette standard. Room for the whole group without rushing a single piece.',
+    label: 'Flat', price: '$1,800',
+    img: 'assets/events/tier-main.jpg',
+    alt: 'Group showing off fresh fine line tattoos at a private event',
+    stamp: 'feat'
+  },
+  {
+    name: 'The Wedding & All Day',
+    spec: '4 hours on site · Date reserved & planned around',
+    desc: 'The full experience: planning call, venue coordination, a flash menu themed to your wedding, and any one $500 add-on included free. Groups larger than 12 book here.',
+    label: 'From', price: '$3,500',
+    img: 'assets/events/tier-wedding.jpg',
+    alt: 'Bride and groom comparing matching fine line tattoos at the after party',
+    stamp: null
+  },
+];
 
 /* ---------- Reviews (verbatim from Google — Nick Tyler Tattoo, Selden NY · ★5.0) ---------- */
 const REVIEWS = [
@@ -63,18 +47,18 @@ const REVIEWS = [
   ['Remmy B.', "Super responsive with all questions and very helpful. Works quickly while still having amazing end results! Genuinely such a great experience!"],
 ];
 
-/* ---------- FAQ (facts from live nicktylertattoo.com sites + The Drop) ---------- */
+/* ---------- FAQ (Private Events facts, locked with the 7/14 pricing) ---------- */
 const FAQ = [
-  ['Where are you located?', "A private studio in Selden — Suffolk County, Long Island, NY. By appointment only; the exact address is shared 24 hours before your appointment."],
-  ['How do I book a pre-drawn design?', "Pick any design from The Drop and hit Claim — the booking calendar opens right there. Choose your date and a $50 deposit holds your slot. It applies directly to your total."],
-  ['Are the designs really one-of-one?', "Yes. Each design is tattooed once, then retired for good. Once it's claimed, it's gone."],
-  ['How do I request a custom tattoo?', "Fill out the custom form with your idea, placement, and reference photos. Every request is reviewed personally — approvals go out by text within 1–3 business days with a private booking link."],
-  ['Is there a charge for the design or drawing?', "No. There's no charge for design or prep — a deposit is only placed once your request is approved and you book, and the full deposit goes toward your final cost."],
-  ['What are your rates?', "$250 per hour, with most pieces between $250 and $1,200. Custom pieces start at $250."],
-  ['What styles do you take on?', "Fine line, ornamental, floral, blackwork, geometric and detailed illustrative work. Larger-scale projects — sleeves, full back — are given priority. No color or realism (rare exceptions)."],
-  ["It's my first tattoo — anything I should know?", "You're in good hands. Ask anything, take breaks whenever you need, and never apologize — just communicate. Your comfort comes first, always."],
-  ['Do you travel or do guest spots?', "Yes — travel sessions are available. Mention where you are in your request."],
-  ["What's your cancellation policy?", "Life happens — give me as much notice as you can. Deposits hold your spot and I'll work with you to reschedule."],
+  ['What exactly is a private tattoo event?', "A private fine line flash session at your wedding venue, shower, bachelorette, or the after party. I bring the full studio to you. Your guests pick small pieces from a flash menu drawn for the occasion, spend 15 to 25 minutes in the chair, and get back to the party."],
+  ['What does it cost?', "The Party Block is a flat $1,000 for 2 hours on site with up to 6 tattoos. The Main Event is a flat $1,800 for 4 hours and up to 12. The Wedding & All Day tier starts at $3,500 with a planning call, venue coordination, a flash menu themed to your wedding, and any one $500 add-on included free. It is never priced per guest, and your guests never open their wallets."],
+  ['How does booking work?', "DM me on Instagram with your date, your venue and town, and your party size. If the date is open, a retainer locks it and everything is confirmed in writing."],
+  ['How many tattoos can our group get?', "Up to 3 pieces per hour, and that cap is firm. It is the pace that keeps every piece clean, and it is why these tattoos look like studio work instead of party favors. Groups larger than 12 book the Wedding & All Day tier so nobody gets rushed."],
+  ['What do guests pick from?', "A flash menu of 12 to 24 designs drawn for the occasion: Bridal Botanicals, Ornamental, Ceremony pieces, and Matching Sets for the whole group. Every piece is 1 to 3 inches, fine line, single needle."],
+  ['Can we get custom pieces?', "Yes, through the Wedding & All Day add-ons: bride & groom custom pieces drawn just for you two, a custom wedding flash sheet designed around your story and your date, or an extra hour on site. Each is $500, and any one of them comes free with the tier. A weekend extension (a 2 hour rehearsal dinner mini session) is $900, permit pending based on venue."],
+  ['Is it safe outside a studio?', "Yes. Full mobile studio, single-use everything, sealed and opened in front of you. I am a licensed, insured studio artist, and every guest leaves with real aftercare so it heals as clean as it went on."],
+  ['Who can get tattooed?', "Guests 18 and up, ID checked, with signed consent while sober. All of it is handled before the bar opens."],
+  ['Where do you travel?', "Long Island, the Hamptons, and New York City. Suffolk County events need the date locked at least 3 weeks out for county permits, so the earlier you reach out, the better."],
+  ['What dates are open?', "Remaining fall and winter 2026 dates are limited, and the 2027 season is booking now. Send your date and I will tell you straight away."],
 ];
 
 /* ================================================================
@@ -310,110 +294,33 @@ addEventListener('load', () => setTimeout(hideLoader, 1200));
 })();
 
 /* ================================================================
-   The Drop — grid, filters, claim
+   The Packages — three tiers on the plate grid
    ================================================================ */
-const drop = (() => {
+(() => {
   const grid = $('#dropGrid');
-  const pillsBox = $('#dropPills');
-  const avail = $('#availOnly');
-  const FILTERS = [
-    ['all', 'All'], ['versatile', 'Any placement'], ['sleeve', 'Sleeve'],
-    ['upper-back', 'Upper back'], ['full-back', 'Full back'], ['sternum', 'Sternum'],
-  ];
-  let cat = 'all';
+  $('#dropCount').textContent = 'Not priced per guest · whether the party is 8 or the wedding is 200';
 
-  const liveCount = CAT.filter(d => d.available).length;
-  $('#dropCount').textContent = `${CAT.length} designs · ${liveCount} still available`;
-
-  pillsBox.innerHTML = FILTERS.map(([k, label]) =>
-    `<button class="pill${k === 'all' ? ' on' : ''}" data-cat="${k}" aria-pressed="${k === 'all'}" data-cursor="link">${label}</button>`).join('');
-
-  function stamp(s) {
-    if (s === 'feat') return `<span class="stamp stamp--feat">Featured</span>`;
-    if (s === 'claimed') return `<span class="stamp stamp--claimed">Claimed</span>`;
-    return `<span class="stamp stamp--live">Live</span>`;
-  }
-
-  function render() {
-    const list = CAT.filter(d =>
-      (cat === 'all' || d.cat === cat) && (!avail.checked || d.available));
-    const html = list.map(d => `
-      <article class="plate${d.available ? '' : ' plate--claimed'}">
-        <div class="plate__imgwrap">
-          <img src="${d.thumb}" alt="${d.title} — pre-drawn tattoo design" loading="lazy">
-          <span class="plate__no">No. ${String(d.n).padStart(2, '0')}</span>
-          ${stamp(d.status)}
+  grid.innerHTML = TIERS.map((t, i) => `
+    <article class="plate">
+      <div class="plate__imgwrap">
+        <img src="${t.img}" alt="${t.alt}" loading="lazy">
+        <span class="plate__no">No. 0${i + 1}</span>
+        ${t.stamp === 'feat' ? '<span class="stamp stamp--feat">Most booked</span>' : ''}
+      </div>
+      <div class="plate__meta">
+        <p class="plate__title">${t.name}</p>
+        <p class="plate__spec">${t.spec}</p>
+        <p class="plate__desc">${t.desc}</p>
+        <div class="plate__row">
+          <span class="plate__price">${t.label} ${t.price}</span>
+          <a class="plate__claim" href="#custom" data-cursor="link">Check your date</a>
         </div>
-        <div class="plate__meta">
-          <p class="plate__title">${d.title}</p>
-          <p class="plate__spec">${d.place} · ${d.size}</p>
-          <div class="plate__row">
-            <span class="plate__price">from ${money(d.price)}</span>
-            ${d.available
-              ? `<button class="plate__claim" data-claim="${d.n}" data-cursor="link">Claim</button>`
-              : `<span class="plate__gone">Gone</span>`}
-          </div>
-        </div>
-      </article>`).join('');
-    grid.innerHTML = html;
-    /* grid height changed — re-measure every trigger below The Drop, or
-       reveals/scrubs further down keep stale pixel positions and never fire */
-    if (!STILL && window.ScrollTrigger) ScrollTrigger.refresh();
-  }
-
-  pillsBox.addEventListener('click', e => {
-    const b = e.target.closest('.pill'); if (!b) return;
-    cat = b.dataset.cat;
-    $$('.pill', pillsBox).forEach(p => {
-      p.classList.toggle('on', p === b);
-      p.setAttribute('aria-pressed', p === b);
-    });
-    render();
-  });
-  avail.addEventListener('change', render);
-  grid.addEventListener('click', e => {
-    const b = e.target.closest('[data-claim]'); if (!b) return;
-    const d = CAT.find(x => x.n === +b.dataset.claim);
-    openBooking(d);
-  });
-
-  render();
-  return { render };
+      </div>
+    </article>`).join('');
+  /* grid height changed — re-measure every trigger below the packages, or
+     reveals/scrubs further down keep stale pixel positions and never fire */
+  if (!STILL && window.ScrollTrigger) ScrollTrigger.refresh();
 })();
-
-/* ================================================================
-   Booking modal — InkedIn calendar with design prefill
-   ================================================================ */
-let lastFocus = null;
-function openBooking(design) {
-  const modal = $('#bookModal');
-  const frame = $('#bookFrame');
-  lastFocus = document.activeElement;
-  const base = window.NT_CONFIG.flashBooking;
-  const label = design ? `${design.title} No. ${String(design.n).padStart(2, '0')}` : '';
-  frame.src = design
-    ? `${base}?${window.NT_CONFIG.designParam}=${encodeURIComponent(label)}`
-    : base;
-  $('#modalDesign').textContent = design ? label + ' · $50 deposit holds it' : 'Pick your date · $50 deposit holds your slot';
-  modal.classList.add('open');
-  modal.setAttribute('aria-hidden', 'false');
-  document.documentElement.style.overflow = 'hidden';
-  if (lenis) lenis.stop();
-  $('.modal__close').focus();
-}
-function closeBooking() {
-  const modal = $('#bookModal');
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden', 'true');
-  $('#bookFrame').src = 'about:blank';
-  document.documentElement.style.overflow = '';
-  if (lenis) lenis.start();
-  if (lastFocus && lastFocus.focus) { lastFocus.focus(); lastFocus = null; }
-}
-$('#bookModal').addEventListener('click', e => { if (e.target.closest('[data-close]')) closeBooking(); });
-addEventListener('keydown', e => { if (e.key === 'Escape') closeBooking(); });
-$('#navBook').addEventListener('click', e => { e.preventDefault(); openBooking(null); });
-$('#finaleBook').addEventListener('click', e => { e.preventDefault(); openBooking(null); });
 
 /* ================================================================
    FAQ accordion
