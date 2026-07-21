@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NTT Private Events — Something Permanent · Wedding &amp; Bachelorette Tattoo Events · Long Island, Hamptons, NYC</title>
 <meta name="description" content="Private fine line tattoo events for weddings, bachelorettes, and showers. Nick Tyler brings the full studio to your venue across Long Island, the Hamptons, and NYC. Something old, something new, something permanent.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40'%3E%3Cg fill='none' stroke='%23B8A98A' stroke-width='4'%3E%3Ccircle cx='24' cy='20' r='15'/%3E%3Ccircle cx='40' cy='20' r='15'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40'%3E%3Cg fill='none' stroke='%23B8A98A' stroke-width='4'%3E%3Ccircle cx='24' cy='20' r='15'/%3E%3Ccircle cx='40' cy='20' r='15'/%3E%3C/g%3E%3Cpath d='M40 1.4 L43.2 5 L40 8.6 L36.8 5 Z' fill='%23F4ECD9'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,24 +13,37 @@
 </head>
 <body>
 
+<!-- ========== Shared mark: the interlocked circles as his & hers wedding bands ========== -->
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <linearGradient id="bandGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E5D7B6"/>
+      <stop offset=".52" stop-color="#B8A98A"/>
+      <stop offset="1" stop-color="#8A754E"/>
+    </linearGradient>
+    <g id="weddingBands">
+      <circle cx="24" cy="20" r="15" fill="none" stroke="url(#bandGrad)" stroke-width="3"/>
+      <circle cx="40" cy="20" r="15" fill="none" stroke="url(#bandGrad)" stroke-width="3"/>
+      <circle cx="24" cy="20" r="15" fill="none" stroke="#F6EEDC" stroke-opacity=".8" stroke-width=".9"
+              stroke-linecap="round" stroke-dasharray="13 81.25" stroke-dashoffset="-56"/>
+      <circle cx="40" cy="20" r="15" fill="none" stroke="#F6EEDC" stroke-opacity=".5" stroke-width=".9"
+              stroke-linecap="round" stroke-dasharray="9 85.25" stroke-dashoffset="-60"/>
+      <path d="M40 2.2 L42.6 5 L40 7.8 L37.4 5 Z" fill="#F4ECD9" stroke="#8A754E" stroke-width=".4"/>
+      <path class="mark-sparkle" d="M40 .6 L40.75 4.25 L44.4 5 L40.75 5.75 L40 9.4 L39.25 5.75 L35.6 5 L39.25 4.25 Z" fill="#FFF8E7"/>
+    </g>
+  </defs>
+</svg>
+
 <!-- ========== Preloader ========== -->
 <div class="loader" id="loader" aria-hidden="true">
-  <svg class="loader__mark" viewBox="0 0 64 40" aria-hidden="true">
-    <g fill="none" stroke="currentColor" stroke-width="2.5">
-      <circle cx="24" cy="20" r="15"/><circle cx="40" cy="20" r="15"/>
-    </g>
-  </svg>
+  <svg class="loader__mark mark-bands" viewBox="0 0 64 40" aria-hidden="true"><use href="#weddingBands"/></svg>
   <div class="loader__bar"><span id="loaderBar"></span></div>
 </div>
 
 <!-- ========== Nav ========== -->
 <header class="nav" id="nav">
   <a class="nav__brand" href="#top" data-cursor="link">
-    <svg class="nav__mark" viewBox="0 0 64 40" aria-hidden="true">
-      <g fill="none" stroke="currentColor" stroke-width="3">
-        <circle cx="24" cy="20" r="15"/><circle cx="40" cy="20" r="15"/>
-      </g>
-    </svg>
+    <svg class="nav__mark mark-bands" viewBox="0 0 64 40" aria-hidden="true"><use href="#weddingBands"/></svg>
     <span>NTT&nbsp;Private&nbsp;Events</span>
   </a>
   <nav class="nav__links">
@@ -76,7 +89,7 @@
   <!-- ========== Marquee ========== -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee__inner" id="marqueeInner">
-      <span>Something old&ensp;·&ensp;Something new&ensp;·&ensp;Something borrowed&ensp;·&ensp;Something permanent&ensp;·&ensp;Weddings &amp; bachelorettes&ensp;·&ensp;Limited 2026 dates&ensp;·&ensp;Now booking 2027&ensp;·&ensp;★ 5.0 on Google&ensp;·&ensp;Long Island&ensp;·&ensp;Hamptons&ensp;·&ensp;NYC&ensp;·&ensp;</span>
+      <span>Something old<i>&#10022;</i>Something new<i>&#10022;</i>Something borrowed<i>&#10022;</i>Something permanent<i>&#10022;</i>Weddings &amp; bachelorettes<i>&#10022;</i>Limited 2026 dates<i>&#10022;</i>Now booking 2027<i>&#10022;</i>★ 5.0 on Google<i>&#10022;</i>Long Island<i>&#10022;</i>Hamptons<i>&#10022;</i>NYC<i>&#10022;</i></span>
     </div>
   </div>
 
@@ -182,6 +195,7 @@
     <video class="finale__video" id="finaleVideo" src="assets/video/atmosphere.mp4" poster="assets/hero-poster.jpg" muted playsinline loop preload="metadata"></video>
     <div class="finale__shade" aria-hidden="true"></div>
     <div class="finale__content">
+      <svg class="finale__bands mark-bands" viewBox="0 0 64 40" aria-hidden="true" data-reveal><use href="#weddingBands"/></svg>
       <p class="finale__serif" data-reveal>Something old, something new.<br>Something permanent.</p>
       <a class="finale__cta" href="#custom" data-cursor="link" id="finaleBook">Check your date</a>
       <p class="kicker" data-reveal>Limited 2026 dates · Now booking 2027 · Long Island · Hamptons · NYC</p>
@@ -194,7 +208,7 @@
 <footer class="footer">
   <div class="footer__row">
     <a class="footer__brand" href="#top" data-cursor="link">
-      <svg viewBox="0 0 64 40" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><circle cx="24" cy="20" r="15"/><circle cx="40" cy="20" r="15"/></g></svg>
+      <svg class="mark-bands" viewBox="0 0 64 40" aria-hidden="true"><use href="#weddingBands"/></svg>
       <span>NTT Private Events</span>
     </a>
     <div class="footer__links">

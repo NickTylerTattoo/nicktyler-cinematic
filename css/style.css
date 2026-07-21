@@ -321,10 +321,54 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
 .cursor.big{width:34px;height:34px}
 @media (hover:none){.cursor{display:none}}
 
+/* ---------- wedding-band mark & jewelry touches ---------- */
+.mark-bands{overflow:visible}
+.mark-sparkle{opacity:0;transform-box:fill-box;transform-origin:center;animation:twinkle 6s ease-in-out infinite}
+.loader__mark .mark-sparkle{animation-duration:2.4s}
+.finale__bands .mark-sparkle{animation-delay:1.2s}
+@keyframes twinkle{
+  0%,86%,100%{opacity:0;transform:scale(.25) rotate(-12deg)}
+  90%{opacity:1;transform:scale(1) rotate(6deg)}
+  96%{opacity:.25;transform:scale(.5) rotate(16deg)}
+}
+.finale__bands{width:92px;filter:drop-shadow(0 6px 28px rgba(184,169,138,.5))}
+
+/* slow jewelry sheen across the gold serif accents */
+.hero__line--accent,.drop__title em,.custom__title em{
+  color:var(--gold);
+  background-image:linear-gradient(105deg,var(--gold) 42%,#F7EDD3 50%,var(--gold) 58%);
+  background-size:240% 100%;background-position:0% 0;background-repeat:no-repeat;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:sheen 9s ease-in-out infinite;
+}
+@keyframes sheen{0%,58%{background-position:0% 0}88%,100%{background-position:100% 0}}
+
+/* marquee gem separators */
+.marquee__inner i{font-style:normal;color:var(--gold);opacity:.65;padding:0 1.15em;font-size:.85em}
+
+/* candlelight glow behind the inquiry panel */
+.ask{position:relative}
+.ask::before{
+  content:"";position:absolute;left:50%;top:-70px;transform:translateX(-50%);
+  width:min(1150px,130%);height:600px;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(184,169,138,.12),transparent 72%);
+}
+.ask__panel{position:relative}
+
+/* cursor blooms into a ring over links */
+.cursor.big{width:38px;height:38px;background:transparent;border:1.5px solid var(--gold)}
+
+@media (prefers-reduced-motion:reduce){
+  .mark-sparkle{animation:none;opacity:0}
+  .hero__line--accent,.drop__title em,.custom__title em{animation:none}
+}
+
 /* ---------- still mode (?still — screenshots) ---------- */
 .still .marquee__inner{animation:none}
 .still .hero__cue i{animation:none}
 .still .hero__text--2,.still .hero__text--3{opacity:0}
+.still .mark-sparkle{animation:none;opacity:1;transform:scale(.8)}
+.still .hero__line--accent,.still .drop__title em,.still .custom__title em{animation:none}
 
 /* ---------- responsive ---------- */
 @media (max-width:720px){
