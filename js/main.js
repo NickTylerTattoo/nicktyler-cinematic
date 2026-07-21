@@ -24,7 +24,7 @@ const TIERS = [
     desc: 'The bachelorette standard. Room for the whole group without rushing a single piece.',
     label: 'Flat', price: '$1,800',
     img: 'assets/events/tier-main.jpg',
-    alt: 'Group showing off fresh fine line tattoos at a private event',
+    alt: 'Fine line florals tattooed at the reception table beside champagne and roses',
     stamp: 'feat'
   },
   {
@@ -184,14 +184,20 @@ addEventListener('load', () => setTimeout(hideLoader, 1200));
   const hero = $('#hero');
 
   if (STILL) {
-    /* frozen state for screenshots: title in, frame 0 */
-    $$('#heroT1 .hero__line').forEach(el => { el.style.letterSpacing = '-0.01em'; el.style.opacity = 1; });
-    $('#heroT1').style.opacity = 1;
-    orbit.progress(0);
+    /* frozen state for screenshots: ?still = title at frame 0, ?still&stage=2 = mid-scrub stage 2 */
+    if (params.get('stage') === '2') {
+      $('#heroT1').style.opacity = 0;
+      $('#heroT2').style.opacity = 1;
+      orbit.progress(0.65);
+    } else {
+      $$('#heroT1 .hero__line').forEach(el => { el.style.letterSpacing = '-0.01em'; el.style.opacity = 1; });
+      $('#heroT1').style.opacity = 1;
+      orbit.progress(0);
+    }
     return;
   }
 
-  /* canvas scrub across the whole 460vh track */
+  /* canvas scrub across the whole 340vh track */
   ScrollTrigger.create({
     trigger: hero, start: 'top top', end: 'bottom bottom', scrub: true,
     onUpdate: st => orbit.progress(st.progress)
@@ -208,13 +214,10 @@ addEventListener('load', () => setTimeout(hideLoader, 1200));
   gsap.set($('#heroT1 .kicker'), { opacity: 0, y: 10 });
   tl.to(lines, { letterSpacing: '-0.01em', opacity: 1, duration: .14, stagger: .02 }, 0.015)
     .to('#heroT1 .kicker', { opacity: 1, y: 0, duration: .06 }, 0.05)
-    .to('#heroT1', { opacity: 0, y: -60, duration: .08 }, 0.30)
-  /* Stage 2 — discipline lines */
-    .fromTo('#heroT2', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .08 }, 0.42)
-    .to('#heroT2', { opacity: 0, y: -50, duration: .07 }, 0.60)
-  /* Stage 3 — the tagline rides out the rotation */
-    .fromTo('#heroT3', { opacity: 0, scale: .96 }, { opacity: 1, scale: 1, duration: .09 }, 0.72)
-    .to('#heroT3', { opacity: 0, duration: .05 }, 0.95)
+    .to('#heroT1', { opacity: 0, y: -60, duration: .09 }, 0.38)
+  /* Stage 2 — discipline lines ride out the rotation */
+    .fromTo('#heroT2', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .09 }, 0.52)
+    .to('#heroT2', { opacity: 0, y: -50, duration: .08 }, 0.80)
   /* scroll cue dies immediately */
     .to('#heroCue', { opacity: 0, duration: .03 }, 0.02);
 })();

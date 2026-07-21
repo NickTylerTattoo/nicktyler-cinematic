@@ -69,7 +69,7 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
 .nav__cta:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(184,169,138,.25)}
 
 /* ---------- hero ---------- */
-.hero{height:460vh;position:relative}
+.hero{height:340vh;position:relative}
 .hero__stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--ink)}
 .hero__canvas{position:absolute;inset:0;width:100%;height:100%}
 .hero__vignette{
@@ -80,7 +80,15 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
   position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;pointer-events:none;padding:0 20px;
 }
-.hero__text--2,.hero__text--3{opacity:0}
+/* scrim keeps type legible over the bright orbit rings; fades with its stage */
+.hero__text::before{
+  content:"";position:absolute;inset:-8%;pointer-events:none;
+  background:radial-gradient(ellipse 58% 42% at center,rgba(10,10,11,.72),rgba(10,10,11,.34) 55%,transparent 74%);
+}
+.hero__text>*{position:relative}
+.hero__title,.hero__mid,.hero__text .kicker{text-shadow:0 2px 26px rgba(10,10,11,.9),0 0 70px rgba(10,10,11,.6)}
+.hero__line--accent{text-shadow:none;filter:drop-shadow(0 2px 18px rgba(10,10,11,.85))}
+.hero__text--2{opacity:0}
 .hero__title{
   font-family:var(--serif);font-size:clamp(2.8rem,9.5vw,8rem);font-weight:400;letter-spacing:-.01em;
   line-height:.98;margin-top:18px;
@@ -92,10 +100,6 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
 }
 .hero__mid{font-family:var(--serif);font-size:clamp(1.7rem,4.4vw,3.5rem);font-weight:400;letter-spacing:-.01em;margin-bottom:14px}
 .hero__mid--sm{font-size:clamp(1.1rem,2.4vw,1.8rem);color:rgba(237,234,227,.8)}
-.hero__serif{
-  font-family:var(--serif);font-style:italic;font-weight:400;
-  font-size:clamp(2.2rem,6vw,4.8rem);line-height:1.1;color:var(--gold);margin-bottom:16px;
-}
 .hero__cue{
   position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:10px;
@@ -366,14 +370,14 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
 /* ---------- still mode (?still — screenshots) ---------- */
 .still .marquee__inner{animation:none}
 .still .hero__cue i{animation:none}
-.still .hero__text--2,.still .hero__text--3{opacity:0}
+.still .hero__text--2{opacity:0}
 .still .mark-sparkle{animation:none;opacity:1;transform:scale(.8)}
 .still .hero__line--accent,.still .drop__title em,.still .custom__title em{animation:none}
 
 /* ---------- responsive ---------- */
 @media (max-width:720px){
   .nav__links{display:none}
-  .hero{height:380vh}
+  .hero{height:280vh}
   .film{height:240vh}
   .quote:nth-child(even){text-align:left}
   .modal__panel{inset:3vh 50% auto;height:94vh}
