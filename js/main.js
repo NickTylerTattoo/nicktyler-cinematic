@@ -14,8 +14,8 @@ const TIERS = [
     spec: '2 hours on site · Up to 6 tattoos',
     desc: 'Bridal showers, engagement parties, and intimate bachelorettes.',
     label: 'Flat', price: '$1,000',
-    img: 'assets/events/tier-party.jpg',
-    alt: 'Bachelorette party getting tiny fine line tattoos in a living room',
+    img: 'assets/events/tier-party.jpg?v=2',
+    alt: 'Fine line florals tattooed at the reception table beside champagne and roses',
     stamp: null
   },
   {
@@ -23,8 +23,8 @@ const TIERS = [
     spec: '4 hours on site · Up to 12 tattoos',
     desc: 'The bachelorette standard. Room for the whole group without rushing a single piece.',
     label: 'Flat', price: '$1,800',
-    img: 'assets/events/tier-main.jpg',
-    alt: 'Fine line florals tattooed at the reception table beside champagne and roses',
+    img: 'assets/events/tier-main.jpg?v=2',
+    alt: 'Bachelorette party getting tiny fine line tattoos in a living room',
     stamp: 'feat'
   },
   {
