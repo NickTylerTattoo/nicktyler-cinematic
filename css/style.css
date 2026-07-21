@@ -151,8 +151,14 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
   position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;opacity:0;padding:0 20px;
 }
-.film__text h2{font-size:clamp(2rem,5.5vw,4.6rem);text-shadow:0 2px 40px rgba(10,10,11,.8)}
-.film__text .index{margin-bottom:16px}
+/* same scrim as the hero — keeps type legible over the moving footage */
+.film__text::before{
+  content:"";position:absolute;inset:-8%;pointer-events:none;
+  background:radial-gradient(ellipse 58% 42% at center,rgba(10,10,11,.72),rgba(10,10,11,.34) 55%,transparent 74%);
+}
+.film__text>*{position:relative}
+.film__text h2{font-size:clamp(2rem,5.5vw,4.6rem);text-shadow:0 2px 26px rgba(10,10,11,.9),0 0 70px rgba(10,10,11,.6)}
+.film__text .index{margin-bottom:16px;text-shadow:0 2px 18px rgba(10,10,11,.95)}
 
 /* ---------- the drop ---------- */
 .drop__title em{font-style:italic;color:var(--gold)}
@@ -273,10 +279,15 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
   position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:30px;
   padding:120px 20px;
 }
+.finale__content::before{
+  content:"";position:absolute;inset:-8%;pointer-events:none;
+  background:radial-gradient(ellipse 58% 46% at center,rgba(10,10,11,.66),rgba(10,10,11,.3) 55%,transparent 74%);
+}
+.finale__content>*{position:relative}
 .finale__serif{
   font-family:var(--serif);font-style:italic;font-weight:400;
   font-size:clamp(2rem,5vw,4rem);line-height:1.15;color:var(--bone);
-  text-shadow:0 2px 40px rgba(10,10,11,.9);
+  text-shadow:0 2px 26px rgba(10,10,11,.9),0 0 70px rgba(10,10,11,.6);
 }
 .finale__cta{
   font-family:var(--mono);font-weight:600;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
