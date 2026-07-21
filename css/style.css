@@ -95,6 +95,7 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
   display:flex;flex-direction:column;align-items:center;
 }
 .hero__line{display:block;white-space:nowrap}
+.hero__title+.kicker{margin-top:28px}
 .hero__line--accent{
   font-style:italic;color:var(--gold);
 }

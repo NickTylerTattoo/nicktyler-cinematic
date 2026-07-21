@@ -211,7 +211,7 @@ addEventListener('load', () => setTimeout(hideLoader, 1200));
   /* Stage 1 — NICK TYLER TATTOO tracks in over the orbit, then drifts away */
   const lines = $$('#heroT1 .hero__line');
   gsap.set(lines, { letterSpacing: '0.55em', opacity: 0 });
-  gsap.set($('#heroT1 .kicker'), { opacity: 0, y: 10 });
+  gsap.set($$('#heroT1 .kicker'), { opacity: 0, y: 10 });
   tl.to(lines, { letterSpacing: '-0.01em', opacity: 1, duration: .14, stagger: .02 }, 0.015)
     .to('#heroT1 .kicker', { opacity: 1, y: 0, duration: .06 }, 0.05)
     .to('#heroT1', { opacity: 0, y: -60, duration: .09 }, 0.38)
