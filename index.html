@@ -205,15 +205,28 @@
 
 <div class="cursor" id="cursor" aria-hidden="true"></div>
 
-<script src="https://link.inkedin.tools/js/form_embed.js"></script>
 <script>
-/* failsafe: if the embed script never reveals the form, show it with a fixed height */
-setTimeout(function(){
-  var f = document.getElementById('inline-Gig5s6KmM780vqG1s9Yb');
-  if (f && getComputedStyle(f).visibility === 'hidden'){
-    f.style.cssText = 'display:block;width:100%;min-height:1200px;border:0;border-radius:2px';
+/* GHL form embed: size the iframe from its iframe-resizer height messages.
+   The stock form_embed.js attaches its listener after the cached iframe has
+   already posted, so the reveal never fires; this listener owns it instead. */
+(function(){
+  var ID = 'inline-Gig5s6KmM780vqG1s9Yb';
+  function show(h){
+    var f = document.getElementById(ID);
+    if (f) f.style.cssText = 'display:block;width:100%;border:0;border-radius:2px;height:' + h + 'px';
   }
-}, 4000);
+  window.addEventListener('message', function(ev){
+    if (typeof ev.data === 'string' && ev.data.indexOf('[iFrameSizer]' + ID + ':') === 0){
+      var h = parseInt(ev.data.split(':')[1], 10);
+      if (h > 200) show(h);
+    }
+  });
+  /* last-resort fixed height if no size message ever arrives */
+  setTimeout(function(){
+    var f = document.getElementById(ID);
+    if (f && getComputedStyle(f).visibility === 'hidden') show(1400);
+  }, 4000);
+})();
 </script>
 <script src="js/vendor/lenis.min.js"></script>
 <script src="js/vendor/gsap.min.js"></script>
