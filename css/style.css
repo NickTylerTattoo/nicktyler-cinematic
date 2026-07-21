@@ -18,7 +18,7 @@ html.lenis,html.lenis body{height:auto}
 body{
   background:var(--ink);color:var(--bone);
   font-family:var(--grotesk);font-size:1rem;font-weight:300;line-height:1.55;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
 }
 ::selection{background:var(--gold);color:var(--ink)}
 img,video,canvas{display:block;max-width:100%}
