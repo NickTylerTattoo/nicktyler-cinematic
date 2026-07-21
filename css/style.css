@@ -12,7 +12,7 @@
   --serif:'Instrument Serif','Cormorant Garamond',serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:auto}
+html{scroll-behavior:auto;overflow-x:clip}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{
@@ -366,7 +366,7 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
 .ask{position:relative}
 .ask::before{
   content:"";position:absolute;left:50%;top:-70px;transform:translateX(-50%);
-  width:min(1150px,130%);height:600px;pointer-events:none;
+  width:min(1150px,100%);height:600px;pointer-events:none;
   background:radial-gradient(closest-side,rgba(184,169,138,.12),transparent 72%);
 }
 .ask__panel{position:relative}
@@ -389,6 +389,10 @@ h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.
 /* ---------- responsive ---------- */
 @media (max-width:720px){
   .nav__links{display:none}
+  .nav{padding:14px 16px}
+  .nav__brand{font-size:.78rem;letter-spacing:.1em;gap:8px}
+  .nav__mark{width:26px}
+  .nav__cta{padding:9px 14px;font-size:.6rem;letter-spacing:.12em;white-space:nowrap}
   .hero{height:280vh}
   .film{height:240vh}
   .quote:nth-child(even){text-align:left}
