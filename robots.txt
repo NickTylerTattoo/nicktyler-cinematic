@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nicktylertattoo.github.io/nicktyler-cinematic/sitemap.xml

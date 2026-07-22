@@ -51,7 +51,7 @@ const REVIEWS = [
 const FAQ = [
   ['What exactly is a private tattoo event?', "A private fine line flash session at your wedding venue, shower, bachelorette, or the after party. I bring the full studio to you. Your guests pick small pieces from a flash menu drawn for the occasion, spend 15 to 25 minutes in the chair, and get back to the party."],
   ['What does it cost?', "The Party Block is a flat $1,000 for 2 hours on site with up to 6 tattoos. The Main Event is a flat $1,800 for 4 hours and up to 12. The Wedding & All Day tier starts at $3,500 with a planning call, venue coordination, a flash menu themed to your wedding, and any one $500 add-on included free. It is never priced per guest, and your guests never open their wallets."],
-  ['How does booking work?', "DM me on Instagram with your date, your venue and town, and your party size. If the date is open, a retainer locks it and everything is confirmed in writing."],
+  ['How does booking work?', "Fill out the Check Your Date form on this page: sixty seconds, five questions. I check every date personally and reply within 24 hours. If the date is open, a retainer locks it and everything is confirmed in writing. Prefer to talk first? DM @nicktylertattoo on Instagram or call the studio."],
   ['How many tattoos can our group get?', "Up to 3 pieces per hour, and that cap is firm. It is the pace that keeps every piece clean, and it is why these tattoos look like studio work instead of party favors. Groups larger than 12 book the Wedding & All Day tier so nobody gets rushed."],
   ['What do guests pick from?', "A flash menu of 12 to 24 designs drawn for the occasion: Bridal Botanicals, Ornamental, Ceremony pieces, and Matching Sets for the whole group. Every piece is 1 to 3 inches, fine line, single needle."],
   ['Can we get custom pieces?', "Yes, through the Wedding & All Day add-ons: bride & groom custom pieces drawn just for you two, a custom wedding flash sheet designed around your story and your date, or an extra hour on site. Each is $500, and any one of them comes free with the tier. A weekend extension (a 2 hour rehearsal dinner mini session) is $900, permit pending based on venue."],
@@ -127,6 +127,7 @@ const orbit = (() => {
     .then(m => {
       if (!m || !m.count) return;
       state.count = m.count;
+      const ext = m.ext || 'jpg';
       const pad = n => String(n).padStart(3, '0');
       const order = [];
       const stride = 6;                       // sparse first pass, then fill
@@ -145,7 +146,7 @@ const orbit = (() => {
             loaderTick();
             pump();
           };
-          img.src = `assets/seq/orbit/f-${pad(idx + 1)}.jpg`;
+          img.src = `assets/seq/orbit/f-${pad(idx + 1)}.${ext}`;
           if (img.decode) img.decode().then(done, done);
           else img.onload = img.onerror = done;
           state.frames[idx] = img;
@@ -382,6 +383,39 @@ addEventListener('load', () => setTimeout(hideLoader, 1200));
     c.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
     c.classList.toggle('big', !!e.target.closest('[data-cursor="link"],a,button'));
   }, { passive: true });
+})();
+
+/* ================================================================
+   Conversion events — GA4 + Meta pixel (silent no-ops until the IDs
+   in index.html are set)
+   ================================================================ */
+(() => {
+  const track = (name, params) => {
+    if (window.gtag) gtag('event', name, params || {});
+    if (window.fbq) {
+      if (name === 'phone_call' || name === 'instagram_dm') fbq('track', 'Contact');
+      else if (name === 'form_view') fbq('track', 'ViewContent', { content_name: 'inquiry_form' });
+      else fbq('trackCustom', name, params || {});
+    }
+  };
+
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a'); if (!a) return;
+    const href = a.getAttribute('href') || '';
+    if (href.startsWith('tel:')) track('phone_call');
+    else if (href.includes('instagram.com')) track('instagram_dm');
+    else if (href === '#custom') track('cta_click', { cta: a.id || a.className || 'check-your-date' });
+  });
+
+  /* form section reached — the page's main conversion step before submit */
+  const form = $('#custom');
+  if (form) {
+    let seen = false;
+    const io = new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting && !seen) { seen = true; track('form_view'); io.disconnect(); }
+    }), { threshold: 0.25 });
+    io.observe(form);
+  }
 })();
 
 /* ---------- smooth anchor jumps through Lenis ---------- */
